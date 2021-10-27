@@ -1,17 +1,24 @@
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Класс, представляющий киоск с запасом ингридиентов.
+ * Класс {@link Automate} представляет киоск с запасом ингридиентов.
  */
 public class Automate {
+
     Map<String, Integer> ingredients = new TreeMap<>();
 
-    public void removeIngredients (Map<String, Integer> remove) {
-        for (Map.Entry<String, Integer> entry: remove.entrySet()) {
-            ingredients.put(entry.getKey(),  ingredients.get(entry.getKey()) - entry.getValue());
+    /**
+     * Метод {@link Automate#removeIngredients(Map)}
+     * удаляет ингридиенты равное количеству ингредиентов переданного в качестве аргумента напитка.
+     */
+    public boolean removeIngredients(Map<String, Integer> lemonade) {
+        for (Map.Entry<String, Integer> entry : lemonade.entrySet()) {
+            if ((ingredients.get(entry.getKey()) - entry.getValue()) < 0) {
+                return false;
+            }
+            ingredients.put(entry.getKey(), ingredients.get(entry.getKey()) - entry.getValue());
         }
+        return true;
     }
 }

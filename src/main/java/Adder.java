@@ -2,10 +2,15 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Отвечает за добавление элементов в Map из консоли.
+ * Класс {@link Adder} отвечает за добавление элементов в Map из консоли.
  */
 public class Adder {
-    void add (int a, Map<String, Integer> map) {
+
+    /**
+     * Метод {@link Adder#add(int, Map)} )}
+     * удаляет ингридиенты равное количеству ингредиентов переданного в качестве аргумента напитка.
+     */
+    void add(int a, Map<String, Integer> map) {
         Scanner scanner = new Scanner(System.in);
         int intScan;
         String strScan;
@@ -19,5 +24,27 @@ public class Adder {
             intScan = scanner.nextInt();
             map.put(strScan, intScan);
         }
+    }
+
+    /**
+     * Метод {@link Adder#orderCounter(Map, Automate, Automate)} )}
+     * выводит количество доступных к готовке напитков.
+     */
+    boolean orderCounter(Map<String, Map<String, Integer>> lemonadesComposition,
+                         Automate copyAutomate, Automate automate) {
+        boolean result = true;
+        int counter = 0;
+        while (result) {
+            for (String key : lemonadesComposition.keySet()) {
+                result = copyAutomate.removeIngredients(lemonadesComposition.get(key));
+                if (!result) {
+                    break;
+                }
+                ++counter;
+            }
+        }
+
+        System.out.println(counter);
+        return result;
     }
 }
