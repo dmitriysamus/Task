@@ -12,6 +12,10 @@ public class Main {
          */
         System.out.println("Введите количество различных ингридиентов");
         int startCount = scanner.nextInt();
+        if (startCount < 1 || startCount > 500) {
+            System.out.println("Некорректный ввод");
+            return;
+        }
 
         /**
          * Считываем доступные ингридиенты.
@@ -24,7 +28,12 @@ public class Main {
          * Считываем количество видов лимонадо.
          */
         System.out.println("Введите количество видов лимонадов");
-        Map<String, Map<String, Integer>> lemonadesComposition = new TreeMap<>(); // состав лемонадов
+        int recipes = scanner.nextInt();
+        if (recipes < 1 || recipes > 100) {
+            System.out.println("Некорректный ввод");
+            return;
+        }
+
 
         /**
          * Считываем рецепты лимонадов.
@@ -32,11 +41,15 @@ public class Main {
         String lemonadeName;
         int ingrLemCount;
         Map<String, Integer> lemonadesCount = new TreeMap<>(); // количество лемонадов
-        int recipes = scanner.nextInt();
+        Map<String, Map<String, Integer>> lemonadesComposition = new TreeMap<>(); // состав лемонадов
         for (int i = 0; i < recipes; i++) {
             Map<String, Integer> composition = new TreeMap<>();
             System.out.println("Введите название лимонада");
             lemonadeName = scanner.next();
+            if (lemonadeName.length() > 100) {
+                System.out.println("Некорректный ввод");
+                return;
+            }
             ingrLemCount = scanner.nextInt();
             lemonadesCount.put(lemonadeName, ingrLemCount); // лемонады
             System.out.println("Введите рецепт");
@@ -49,11 +62,15 @@ public class Main {
          */
         System.out.println("Введите количество лимонадов в заказе");
         int orderCount = scanner.nextInt();
-        LinkedList<String> order = new LinkedList<>();
+        if (recipes < 1 || recipes > 100) {
+            System.out.println("Некорректный ввод");
+            return;
+        }
 
         /**
          * Считываем  заказ.
          */
+        LinkedList<String> order = new LinkedList<>();
         System.out.println("Введите названия лимонадов");
         for (int i = 0; i < orderCount; i++) {
             lemonadeName = scanner.next();
